@@ -31,6 +31,8 @@ function startRestart() {
 
 
 function reset() {
+    // A primeira coluna é a esquerda
+    // A primeira celula é a de baixo
     let cells = document.getElementsByClassName("game__board__cell")
     for (let k = 0; k < cells.length; k++) {
         cells[k].innerHTML = ""
@@ -77,6 +79,40 @@ function play(e) {
             firstPlayer = true
         }
     }
+    console.log(move.indexOf())
+}
+
+
+// Matheus
+
+ function victory(i,j,player){
+    let vict = false
+    let counterVertical = 0
+    let counterHorizontal = 0
+    let counterDiagonal = 0
+    let level = 1
+    while (level<4){
+        if(move[i-level][j]==move[i][j] ||move[i+level][j]==move[i][j]){
+            counterVertical++
+        }
+        if(move[i][j-level]==move[i][j]||move[i][j+level]==move[i][j]){
+            counterHorizontal++
+        }
+        if(movel[i-level][j-level]||movel[i+level][j+level]){
+            counterDiagonal++
+        }
+        level++
+    }
+    if(counterVertical>3||counterHorizontal>3||counterDiagonal>3){
+        vict=true
+        console.log(`O ${player} venceu a partida`)
+        return true
+    }
+    else {
+        return false
+    }
+ }
+// Matheus
 
 }
 
