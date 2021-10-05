@@ -1,3 +1,14 @@
+html {
+    background-color: rgb(110, 62, 110);
+    background-image: url("https://i.ibb.co/4KG26FH/jo-san-neuromancerfrontv7.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body {
+    width: 100%;
+}
+
 .game {
     display:flex;
     flex-direction: column;
@@ -6,20 +17,29 @@
 }
 
 .game__board {
+    margin-top: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.548);
+    width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     cursor: pointer;
 }
 
 .game__board__column {
     display:flex;
     flex-direction: column-reverse;
+    -webkit-box-shadow: 0px 0px 4px 3px #00FDFF;
+    box-shadow: 0px 0px 4px 3px #00FDFF;
 }
 
 .game__board__cell {
-    height: 15px;
-    width: 15px;
-    border: 1px solid black;
+    height: 10vw;
+    width: 10vw;
+    border: 2px dashed rgb(0, 247, 255);
 }
+
 
 

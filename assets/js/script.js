@@ -1,4 +1,5 @@
 const board = document.getElementById("gameBoard")
+
 const start = document.getElementById("startButton")
 console.log(start)
 
@@ -40,6 +41,7 @@ function reset() {
 
 // Cria o tabuleiro com as classes e ids prontas
 function createBoard() {
+    board.classList.add("game__board")
     for (let i = 0; i < boardSize.length; i++) {
         let column = document.createElement("ul")
         column.classList.add("game__board__column")
