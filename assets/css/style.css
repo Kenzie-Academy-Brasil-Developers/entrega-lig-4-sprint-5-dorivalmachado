@@ -1,0 +1,24 @@
+.game {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.game__board {
+    display: none;
+    flex-direction: row;
+}
+
+.game__board__column {
+    display:flex;
+    flex-direction: column-reverse;
+}
+
+.game__board__cell {
+    height: 15px;
+    width: 15px;
+    border: 1px solid black;
+}
+
+
