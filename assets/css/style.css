@@ -6,8 +6,9 @@
 }
 
 .game__board {
-    display: none;
+    display: flex;
     flex-direction: row;
+    cursor: pointer;
 }
 
 .game__board__column {
