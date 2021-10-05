@@ -41,5 +41,17 @@ body {
     border: 2px dashed rgb(0, 247, 255);
 }
 
+.red__piece {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: red;
+}
 
 
+.black__piece {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: black;
+}
