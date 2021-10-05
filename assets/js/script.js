@@ -85,37 +85,32 @@ function play(e) {
 
 
 // Matheus
-// startRestart()
 
-// let a =[[1,2,3,4],[5,6,7,8],[9,10,11,12]]
-// let b = [5,6,7,8]
-// let move[c][d]=a[1][2]
-// console.log(b)
-// console.log(a[1].indexOf(move))
-
- function victory(move){
-    
-
-
-    // move = boardSize[i][j] //coluna(i)/linha(j)
-
-    
+ function victory(i,j,player){
     let vict = false
-    let counter =0
-    let previusVert = 0
-    let previusHor = 0
-    let previusDiag = 0
-    let afterVert = 0
-    let afterHor = 0
-    let afterDiag = 0
-    while (vict===false){
-        
-        if(move[i-1][j]==move[i][j] ||move[i][j-1]==move[i][j]){
-            counter++
-        // }
+    let counterVertical = 0
+    let counterHorizontal = 0
+    let counterDiagonal = 0
+    let level = 1
+    while (level<4){
+        if(move[i-level][j]==move[i][j] ||move[i+level][j]==move[i][j]){
+            counterVertical++
+        }
+        if(move[i][j-level]==move[i][j]||move[i][j+level]==move[i][j]){
+            counterHorizontal++
+        }
+        if(movel[i-level][j-level]||movel[i+level][j+level]){
+            counterDiagonal++
+        }
+        level++
     }
-
+    if(counterVertical>3||counterHorizontal>3||counterDiagonal>3){
+        vict=true
+        console.log(`O ${player} venceu a partida`)
+        return true
+    }
+    else {
+        return false
+    }
  }
-
-
 // Matheus
