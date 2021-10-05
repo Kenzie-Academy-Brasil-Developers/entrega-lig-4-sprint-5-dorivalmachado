@@ -31,6 +31,8 @@ function startRestart() {
 
 
 function reset() {
+    // A primeira coluna é a esquerda
+    // A primeira celula é a de baixo
     let cells = document.getElementsByClassName("game__board__cell")
     for (let k = 0; k < cells.length; k++) {
         cells[k].innerHTML = ""
@@ -78,4 +80,42 @@ function play(e) {
             firstPlayer = true
         }
     }
+    console.log(move.indexOf())
 }
+
+
+// Matheus
+// startRestart()
+
+// let a =[[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+// let b = [5,6,7,8]
+// let move[c][d]=a[1][2]
+// console.log(b)
+// console.log(a[1].indexOf(move))
+
+ function victory(move){
+    
+
+
+    // move = boardSize[i][j] //coluna(i)/linha(j)
+
+    
+    let vict = false
+    let counter =0
+    let previusVert = 0
+    let previusHor = 0
+    let previusDiag = 0
+    let afterVert = 0
+    let afterHor = 0
+    let afterDiag = 0
+    while (vict===false){
+        
+        if(move[i-1][j]==move[i][j] ||move[i][j-1]==move[i][j]){
+            counter++
+        // }
+    }
+
+ }
+
+
+// Matheus
