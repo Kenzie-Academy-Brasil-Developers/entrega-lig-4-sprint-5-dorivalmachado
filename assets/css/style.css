@@ -1,0 +1,37 @@
+.game {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.game__board {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.game__board__column {
+    display:flex;
+    flex-direction: column-reverse;
+}
+
+.game__board__cell {
+    height: 15px;
+    width: 15px;
+    border: 1px solid black;
+}
+
+.red__piece {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: red;
+}
+
+.black__piece {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: black;
+}
