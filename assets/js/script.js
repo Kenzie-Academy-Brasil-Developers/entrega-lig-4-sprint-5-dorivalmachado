@@ -64,16 +64,15 @@ function play(e) {
         //Verifica se o movimento é válido ou não
         if (e.currentTarget.lastChild.childElementCount === 0) {
             //Se for válido, o código da adição da peça vai aqui
-
-
+            insertDisk(e.currentTarget, firstPlayer)
             //A linha abaixo muda para a vez do Player 2
             firstPlayer = false
         }
     } else {
         if (e.currentTarget.lastChild.childElementCount === 0) {
             //Se for válido, o código da adição da peça vai aqui
-        
-
+            insertDisk(e.currentTarget, firstPlayer)
+            
             //A linha abaixo muda para a vez do Player 1.
             firstPlayer = true
         }
@@ -81,37 +80,33 @@ function play(e) {
 
 }
 
-// Receber jogador ou pedra
-// Array tabuleiro no escopo global
-// Receber coluna
-// Verificar se célula x_y possui filho. Se não appendChild pedra na célula
-// Atualizar array
-
 const insertDisk = (selectedColumn, player) => {
     // selectedColumn pode ser um elemento do DOM => const column =  selectedColumn.getAttribute('id'); OU const columnIndex = selectedColumn.lastChild.getAttribute('id').splice(-1)
-    // const column = arrayTabuleiro[columnIndex]
-    // const disk = player ? "V" : "P"
-    // for (let i = 0; i<column.length; i++){
-    //     if (column[i] === 'X'){
-    //         column[i] = disk;
-    //         const id = `#nome${i}_${columnIndex}`;
-    //         const emptyCell = document.querySelector(id);
-    //         emptyCell.appendChild(disk);
-    //     }
-    //     else{
-    //         break
-    //     }
-    // }
+    const columnIndex = selectedColumn.lastChild.getAttribute("id").slice(0,1);
+    const column = boardSize[Number(columnIndex) - 1];
+    let diskValue = '';
+    const disk = document.createElement("div");
 
-    //  OU
+    if(player === true){
+        diskValue = "V"
+        disk.classList.add("red__piece");
+    }else{
+        diskValue = "P"
+        disk.classList.add("black__piece");
+    }
+    
+    for (let i = 0; i<column.length; i++){
+        if (column[i] === 'X'){
+            column[i] = diskValue;
+            const id = `${columnIndex}-${i+1}`;
+            // console.log(id)
+            const emptyCell = document.getElementById(id);
+            emptyCell.appendChild(disk);
+            console.log(boardSize)
+    
+            break
+        }
+        
+    }
 
-    // for (let i = column.length-1; i>=0; i--){
-    //     if (column[i] === 'X'){
-    //         column[i] = disk;
-    //         const id = `#nome${i}_${columnIndex}`;
-    //         const emptyCell = document.querySelector(id);
-    //         emptyCell.appendChild(disk);
-    //         break
-    //     }
-    //   
-    // }
+}

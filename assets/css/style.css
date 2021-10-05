@@ -22,4 +22,16 @@
     border: 1px solid black;
 }
 
+.red__piece {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: red;
+}
 
+.black__piece {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: black;
+}
