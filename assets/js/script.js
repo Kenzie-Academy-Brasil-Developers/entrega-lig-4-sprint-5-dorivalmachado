@@ -85,26 +85,49 @@ function play(e) {
 
 // Matheus
 
- function victory(i,j,player){
-    let vict = false
-    let counterVertical = 0
-    let counterHorizontal = 0
-    let counterDiagonal = 0
+ function checkVictory(i,j){
+    let counter={
+        Vertical:{up:0},
+        Horizontal:{left:0,right:0,leftAble:true,rightAble:true},
+        Diagonal:{left:0,right:0,leftAble:true,rightAble:true}
+    };
+    
     let level = 1
     while (level<4){
-        if(move[i-level][j]==move[i][j] ||move[i+level][j]==move[i][j]){
-            counterVertical++
+        if(boardSize[i-level][j]===boardSize[i][j]&&counter.Horizontal.leftAble===true){
+            counter.Horizontal.left++
         }
-        if(move[i][j-level]==move[i][j]||move[i][j+level]==move[i][j]){
-            counterHorizontal++
+        else{
+            counter.Horizontal.leftAble===false
         }
-        if(movel[i-level][j-level]||movel[i+level][j+level]){
-            counterDiagonal++
+        if(boardSize[i+level][j]===boardSize[i][j]&&counter.Horizontal.rightAble===true){
+            counter.Horizontal.right++
+        }
+        else{
+            counter.Horizontal.rightAble===false
+        }
+        if(boardSize[i][j-level]===boardSize[i][j]){
+            counterVertical.up++
+        }
+        if(boardSize[i-level][j-level]===boardSize[i][j]&&counter.Diagonal.leftAble===true){
+            counterDiagonal.left++
+        }
+        else{
+            counter.Diagonal.leftAble===false
+        }
+        if(boardSize[i+level][j+level]===boardSize[i][j]&&counter.Diagonal.rightAble===true){
+            counterDiagonalright++
+        }
+        else{
+            counter.Diagonal.rightAble===false
         }
         level++
     }
-    if(counterVertical>3||counterHorizontal>3||counterDiagonal>3){
-        vict=true
+    let counterVertical=counterVertical.up
+    let counterHorizontal=(counter.Horizontal.leftAble?counter.Horizontal.left:0)+(counter.Horizontal.rightAble?counter.Horizontal.right:0)
+    let counterDiagonal=(counter.Diagonal.leftAble?counter.Diagonal.left:0)+(counter.Diagonal.rightAble?counter.Diagonal.right:0)
+
+    if(counterVertical>=3||counterHorizontal>=3||counterDiagonal>=3){
         console.log(`O ${player} venceu a partida`)
         return true
     }
@@ -114,7 +137,7 @@ function play(e) {
  }
 // Matheus
 
-}
+
 
 const insertDisk = (selectedColumn, player) => {
     // selectedColumn pode ser um elemento do DOM => const column =  selectedColumn.getAttribute('id'); OU const columnIndex = selectedColumn.lastChild.getAttribute('id').splice(-1)
