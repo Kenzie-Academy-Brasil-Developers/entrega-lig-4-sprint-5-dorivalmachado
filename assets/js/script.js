@@ -1,7 +1,6 @@
 const board = document.getElementById("gameBoard")
 
 const start = document.getElementById("startButton")
-// console.log(start)
 
 
 start.addEventListener("click", startRestart)
@@ -106,94 +105,121 @@ function play(e) {
             firstPlayer = true
         }
     }
-    //console.log(move.indexOf())
 }
 
 
 // Matheus
 
- function checkVictory(i,j){
+function checkHorizontalVictory(arrayLine,arrayColumn){
+    let counter={
+        Horizontal:{left:0,right:0,leftAble:true,rightAble:true},
+    };
+    
+    let level = 1
+    while (level<4){
+        if(arrayLine-level>=0){
+            if(boardSize[arrayLine-level][arrayColumn]===boardSize[arrayLine][arrayColumn]&&counter.Horizontal.leftAble===true){
+                counter.Horizontal.left++
+            }else{
+                counter.Horizontal.leftAble===false
+            }
+        }
+        
+        if(arrayLine+level<=6){
+            if(boardSize[arrayLine+level][arrayColumn]===boardSize[arrayLine][arrayColumn]&&counter.Horizontal.rightAble===true){
+                counter.Horizontal.right++
+            }else{
+                counter.Horizontal.rightAble===false
+            }
+        }
+        
+        level++
+    }
+
+    let countHorizontal=counter.Horizontal.left+counter.Horizontal.right
+    
+    if(countHorizontal >= 3){
+        console.log(`Venceu a partida na horizontal`)
+        return true
+    }else {
+        return false
+    }
+}
+
+function checkVerticalVictory(arrayLine,arrayColumn){
     let counter={
         Vertical:{up:0},
-        Horizontal:{left:0,right:0,leftAble:true,rightAble:true},
+    };
+    
+    let level = 1
+    while (level<4){
+        
+        if(boardSize[arrayLine][arrayColumn-level]===boardSize[arrayLine][arrayColumn]){
+            counter.Vertical.up++
+        }
+        
+        level++
+    }
+
+    let countVertical=counter.Vertical.up
+    
+    if(countVertical >= 3){
+        console.log(`Venceu a partida na vertical`)
+        return true
+    }else {
+        return false
+    }
+}
+
+function checkDiagonalVictory(arrayLine,arrayColumn){
+    let counter={
         DiagonalUp:{left:0,right:0,leftAble:true,rightAble:true},
         DiagonalDown:{left:0,right:0,leftAble:true,rightAble:true}
     };
     
     let level = 1
     while (level<4){
-        console.log(boardSize[i][j])
-        // console.log(boardSize[i-level][j])
-        if(i-level>=0){
-            if(boardSize[i-level][j]===boardSize[i][j]&&counter.Horizontal.leftAble===true){
-                counter.Horizontal.left++
-            }
-            else{
-                counter.Horizontal.leftAble===false
-                }
-            if(boardSize[i-level][j-level]===boardSize[i][j]&&counter.DiagonalUp.leftAble===true){
+        if(arrayLine-level>=0){
+            if(boardSize[arrayLine-level][arrayColumn-level]===boardSize[arrayLine][arrayColumn]&&counter.DiagonalUp.leftAble===true){
                 counter.DiagonalUp.left++
-            }
-            else{
+            }else{
                 counter.DiagonalUp.leftAble===false
             } 
         }
-        if(i+level<=6){
-           if(boardSize[i+level][j]===boardSize[i][j]&&counter.Horizontal.rightAble===true){
-            counter.Horizontal.right++
-            }
-            else{
-            counter.Horizontal.rightAble===false
-            }
-            if(boardSize[i+level][j+level]===boardSize[i][j]&&counter.DiagonalUp.rightAble===true){
-            counter.DiagonalUp.right++
-            }
-            else{
-            counter.DiagonalUp.rightAble===false
+        if(arrayLine+level<=6){
+            if(boardSize[arrayLine+level][arrayColumn+level]===boardSize[arrayLine][arrayColumn]&&counter.DiagonalUp.rightAble===true){
+                counter.DiagonalUp.right++
+            }else{
+                counter.DiagonalUp.rightAble===false
             } 
         }
         
-        if(boardSize[i][j-level]===boardSize[i][j]){
-            counter.Vertical.up++
-        }
-        
-// rever
-        if (i-level>=0 && j+level<=6){
-            if(boardSize[i-level][j+level]===boardSize[i][j]&&counter.DiagonalDown.leftAble===true){
+        if (arrayLine-level>=0 && arrayColumn+level<=6){
+            if(boardSize[arrayLine-level][arrayColumn+level]===boardSize[arrayLine][arrayColumn]&&counter.DiagonalDown.leftAble===true){
                 counter.DiagonalDown.left++
-                // console.log("descendo")
-            }
-            else{
+            }else{
                 counter.DiagonalDown.leftAble===false
             }
         }
-            if(i+level<=6 && j-level>=0){
-                if(boardSize[i+level][j-level]===boardSize[i][j]&&counter.DiagonalDown.rightAble===true){
-                    counter.DiagonalDown.right++
-                    // console.log(counter.DiagonalDown.right)
-                    console.log("descendo")
-                }
-            else{
+
+        if(arrayLine+level<=6 && arrayColumn-level>=0){
+            if(boardSize[arrayLine+level][arrayColumn-level]===boardSize[arrayLine][arrayColumn]&&counter.DiagonalDown.rightAble===true){
+                counter.DiagonalDown.right++
+            }else{
                 counter.DiagonalDown.rightAble===false
             }  
-            }
-            
-        
-// rever
+        }
+    
         level++
     }
-    let countVertical=counter.Vertical.up
-    let countHorizontal=counter.Horizontal.left+counter.Horizontal.right
+
     let countDiagonalUp=counter.DiagonalUp.left+counter.DiagonalUp.right
     let countDiagonalDown=counter.DiagonalDown.left+counter.DiagonalDown.right
-    // console.log(countDiagonalUp)
-    // console.log(countDiagonalDown)
-    if(countVertical>=3||countHorizontal>=3||countDiagonalUp>=3||countDiagonalDown>=3){
-        console.log(`O venceu a partida`)
+    
+    if(countDiagonalUp >= 3 || countDiagonalDown >= 3){
+        console.log(`Venceu a partida na diagonal`)
         return true
-    }
-    else {
-        // console.log("perdeu")
+    }else {
         return false
     }
 }
@@ -203,7 +229,8 @@ function play(e) {
 const insertDisk = (selectedColumn, player) => {
     // selectedColumn pode ser um elemento do DOM => const column =  selectedColumn.getAttribute('id'); OU const columnIndex = selectedColumn.lastChild.getAttribute('id').splice(-1)
     const columnIndex = selectedColumn.lastChild.getAttribute("id").slice(0, 1);
-    const column = boardSize[Number(columnIndex) - 1];
+    const boardSizeLineIndex = Number(columnIndex) - 1;
+    const boardSizeLine = boardSize[boardSizeLineIndex];
     let diskValue = '';
     const disk = document.createElement("div");
 
@@ -215,18 +242,19 @@ const insertDisk = (selectedColumn, player) => {
         disk.classList.add("black__piece");
     }
 
-    for (let i = 0; i < column.length; i++) {
-        if (column[i] === 'X') {
-            column[i] = diskValue;
+    for (let i = 0; i < boardSizeLine.length; i++) {
+        if (boardSizeLine[i] === 'X') {
+            boardSizeLine[i] = diskValue;
             const id = `${columnIndex}-${i+1}`;
-            // console.log(id)
             const emptyCell = document.getElementById(id);
             emptyCell.appendChild(disk);
-            // console.log(boardSize)
-            checkVictory((Number(columnIndex) - 1),i)
+            checkHorizontalVictory(boardSizeLineIndex,i);
+            checkVerticalVictory(boardSizeLineIndex,i);
+            checkDiagonalVictory(boardSizeLineIndex,i);
             break
         }
 
     }
 
 }
+
