@@ -61,7 +61,7 @@ let firstPlayer = true
 
 // Base da função do jogo todo
 function play(e) {
-    // console.log(firstPlayer)
+    console.log(e.currentTarget.lastChild.childElementCount)
     // Verifica se é o Player 1 ou 2
     if (firstPlayer === true) {
         //Verifica se o movimento é válido ou não
@@ -70,6 +70,7 @@ function play(e) {
             insertDisk(e.currentTarget, firstPlayer)
             //A linha abaixo muda para a vez do Player 2
             firstPlayer = false
+            
         }
     } else {
         if (e.currentTarget.lastChild.childElementCount === 0) {
@@ -90,65 +91,92 @@ function play(e) {
     let counter={
         Vertical:{up:0},
         Horizontal:{left:0,right:0,leftAble:true,rightAble:true},
-        Diagonal:{left:0,right:0,leftAble:true,rightAble:true}
+        DiagonalUp:{left:0,right:0,leftAble:true,rightAble:true},
+        DiagonalDown:{left:0,right:0,leftAble:true,rightAble:true}
     };
     
     let level = 1
     while (level<4){
-        if(boardSize[i-level][j]===boardSize[i][j]&&counter.Horizontal.leftAble===true){
-            counter.Horizontal.left++
+        console.log(boardSize[i][j])
+        // console.log(boardSize[i-level][j])
+        if(i-level>=0){
+            if(boardSize[i-level][j]===boardSize[i][j]&&counter.Horizontal.leftAble===true){
+                counter.Horizontal.left++
+            }
+            else{
+                counter.Horizontal.leftAble===false
+                }
+            if(boardSize[i-level][j-level]===boardSize[i][j]&&counter.DiagonalUp.leftAble===true){
+                counter.DiagonalUp.left++
+            }
+            else{
+                counter.DiagonalUp.leftAble===false
+            } 
         }
-        else{
-            counter.Horizontal.leftAble===false
-        }
-        if(boardSize[i+level][j]===boardSize[i][j]&&counter.Horizontal.rightAble===true){
+        if(i+level<=6){
+           if(boardSize[i+level][j]===boardSize[i][j]&&counter.Horizontal.rightAble===true){
             counter.Horizontal.right++
-        }
-        else{
+            }
+            else{
             counter.Horizontal.rightAble===false
-        }
-        if(boardSize[i][j-level]===boardSize[i][j]){
-            counterVertical.up++
-        }
-        if(boardSize[i-level][j-level]===boardSize[i][j]&&counter.Diagonal.leftAble===true){
-            counter.Diagonal.left++
-        }
-        else{
-            counter.Diagonal.leftAble===false
-        }
-        if(boardSize[i+level][j+level]===boardSize[i][j]&&counter.Diagonal.rightAble===true){
-            counterDiagonalright++
-        }
-        else{
-            counter.Diagonal.rightAble===false
+            }
+            if(boardSize[i+level][j+level]===boardSize[i][j]&&counter.DiagonalUp.rightAble===true){
+            counter.DiagonalUp.right++
+            }
+            else{
+            counter.DiagonalUp.rightAble===false
+            } 
         }
         
+        if(boardSize[i][j-level]===boardSize[i][j]){
+            counter.Vertical.up++
+        }
+        
+        // x
+        // xxxxxxvx
+        // xxvxvxxx
+        // xxxoxxxx
+        // xxvxvxxx
+        // xxxxxxxx
 // rever
-        if(boardSize[i-level][j-level]===boardSize[i][j]&&counter.Diagonal.leftAble===true){
-            counter.Diagonal.left++
-        }
-        else{
-            counter.Diagonal.leftAble===false
-        }
-        if(boardSize[i+level][j+level]===boardSize[i][j]&&counter.Diagonal.rightAble===true){
-            counterDiagonalright++
-        }
-        else{
-            counter.Diagonal.rightAble===false
+        if (i-level>=0 && i+level<=6 && j-level>=0 && j+level<=6){
+            // console.log("entrou")
+            // console.log(counter.DiagonalDown.leftAble)
+            // console.log("anterior"+ boardSize[i+level][j-level])
+            // console.log("ultimo"+boardSize[i][j])
+            if(boardSize[i-level][j+level]===boardSize[i][j]&&counter.DiagonalDown.leftAble===true){
+                counter.DiagonalDown.left++
+                console.log("descendo")
+            }
+            else{
+                counter.DiagonalDown.leftAble===false
+            }
+            if(boardSize[i+level][j-level]===boardSize[i][j]&&counter.DiagonalDown.rightAble===true){
+                counter.DiagonalDown.right++
+                console.log(counter.DiagonalDown.right)
+                console.log("descendo")
+            }
+            else{
+                
+                counter.DiagonalDown.rightAble===false
+                console.log("rightAble  "+counter.DiagonalDown.rightAble)
+            }
         }
 // rever
         level++
     }
-    let counterVertical=counterVertical.up
-    let counterHorizontal=counter.Horizontal.left+counter.Horizontal.right
-    let counterDiagonal=counter.Diagonal.left+counter.Diagonal.right
-
-    if(counterVertical>=3||counterHorizontal>=3||counterDiagonal>=3){
+    let countVertical=counter.Vertical.up
+    let countHorizontal=counter.Horizontal.left+counter.Horizontal.right
+    let countDiagonalUp=counter.DiagonalUp.left+counter.DiagonalUp.right
+    let countDiagonalDown=counter.DiagonalDown.left+counter.DiagonalDown.right
+    // console.log(countDiagonalUp)
+    // console.log(countDiagonalDown)
+    if(countVertical>=3||countHorizontal>=3||countDiagonalUp>=3||countDiagonalDown>=3){
         console.log(`O venceu a partida`)
         return true
     }
     else {
-        console.log("perdeu")
+        // console.log("perdeu")
         return false
     }
  }
