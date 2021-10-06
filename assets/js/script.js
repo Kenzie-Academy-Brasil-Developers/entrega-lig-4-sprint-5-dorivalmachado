@@ -226,8 +226,7 @@ function checkDiagonalVictory(arrayLine,arrayColumn){
 // Matheus
 
 
-const insertDisk = (selectedColumn, player) => {
-    // selectedColumn pode ser um elemento do DOM => const column =  selectedColumn.getAttribute('id'); OU const columnIndex = selectedColumn.lastChild.getAttribute('id').splice(-1)
+function insertDisk (selectedColumn, player) {
     const columnIndex = selectedColumn.lastChild.getAttribute("id").slice(0, 1);
     const boardSizeLineIndex = Number(columnIndex) - 1;
     const boardSizeLine = boardSize[boardSizeLineIndex];
@@ -241,20 +240,49 @@ const insertDisk = (selectedColumn, player) => {
         diskValue = "P"
         disk.classList.add("black__piece");
     }
-
+    
+    let attemptFindEmptyCell = 0;
+    
     for (let i = 0; i < boardSizeLine.length; i++) {
+        attemptFindEmptyCell++
+        
         if (boardSizeLine[i] === 'X') {
+            
             boardSizeLine[i] = diskValue;
             const id = `${columnIndex}-${i+1}`;
             const emptyCell = document.getElementById(id);
+            
+            showFallAnimation(selectedColumn,disk,emptyCell,attemptFindEmptyCell)
+            
             emptyCell.appendChild(disk);
+            
             checkHorizontalVictory(boardSizeLineIndex,i);
             checkVerticalVictory(boardSizeLineIndex,i);
             checkDiagonalVictory(boardSizeLineIndex,i);
+            
             break
         }
 
     }
 
+}
+
+function showFallAnimation (column,disk,cell,counter){
+    
+    const columnHeight = column.clientHeight;
+    const cellHeight = cell.clientHeight
+    const gap = columnHeight/6 - cellHeight
+    
+    column.classList.add("position-rel");
+    disk.classList.add("position-abs");
+    disk.style.top = `-${cellHeight}px`
+    
+    setTimeout(() => disk.style.top = `${cellHeight*(7-counter) - (gap*(counter-1))}px`, 1000)
+    setTimeout(() => {
+        disk.removeAttribute("style");
+        column.classList.remove("position-rel");
+        disk.classList.remove("position-abs");
+    }, 2000)
+            
 }
 
