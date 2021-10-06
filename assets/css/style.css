@@ -178,3 +178,12 @@ header h2 {
     }
 
 }
+
+.position-rel {
+    position: relative;
+}
+
+.position-abs{
+    position: absolute;
+    transition: 1s;
+}
