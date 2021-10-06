@@ -1,6 +1,6 @@
 const board = document.getElementById("gameBoard")
 const start = document.getElementById("startButton")
-console.log(start)
+// console.log(start)
 
 
 start.addEventListener("click", startRestart)
@@ -58,9 +58,10 @@ function createBoard() {
 
 // Armazena o estado de quem é a vez de jogar
 let firstPlayer = true
+
 // Base da função do jogo todo
 function play(e) {
-    console.log(firstPlayer)
+    // console.log(firstPlayer)
     // Verifica se é o Player 1 ou 2
     if (firstPlayer === true) {
         //Verifica se o movimento é válido ou não
@@ -79,7 +80,7 @@ function play(e) {
             firstPlayer = true
         }
     }
-    console.log(move.indexOf())
+    // console.log(move.indexOf())
 }
 
 
@@ -110,7 +111,7 @@ function play(e) {
             counterVertical.up++
         }
         if(boardSize[i-level][j-level]===boardSize[i][j]&&counter.Diagonal.leftAble===true){
-            counterDiagonal.left++
+            counter.Diagonal.left++
         }
         else{
             counter.Diagonal.leftAble===false
@@ -121,17 +122,33 @@ function play(e) {
         else{
             counter.Diagonal.rightAble===false
         }
+        
+// rever
+        if(boardSize[i-level][j-level]===boardSize[i][j]&&counter.Diagonal.leftAble===true){
+            counter.Diagonal.left++
+        }
+        else{
+            counter.Diagonal.leftAble===false
+        }
+        if(boardSize[i+level][j+level]===boardSize[i][j]&&counter.Diagonal.rightAble===true){
+            counterDiagonalright++
+        }
+        else{
+            counter.Diagonal.rightAble===false
+        }
+// rever
         level++
     }
     let counterVertical=counterVertical.up
-    let counterHorizontal=(counter.Horizontal.leftAble?counter.Horizontal.left:0)+(counter.Horizontal.rightAble?counter.Horizontal.right:0)
-    let counterDiagonal=(counter.Diagonal.leftAble?counter.Diagonal.left:0)+(counter.Diagonal.rightAble?counter.Diagonal.right:0)
+    let counterHorizontal=counter.Horizontal.left+counter.Horizontal.right
+    let counterDiagonal=counter.Diagonal.left+counter.Diagonal.right
 
     if(counterVertical>=3||counterHorizontal>=3||counterDiagonal>=3){
-        console.log(`O ${player} venceu a partida`)
+        console.log(`O venceu a partida`)
         return true
     }
     else {
+        console.log("perdeu")
         return false
     }
  }
@@ -161,8 +178,8 @@ const insertDisk = (selectedColumn, player) => {
             // console.log(id)
             const emptyCell = document.getElementById(id);
             emptyCell.appendChild(disk);
-            console.log(boardSize)
-    
+            // console.log(boardSize)
+            checkVictory((Number(columnIndex) - 1),i)
             break
         }
         
