@@ -1,37 +1,180 @@
+@font-face {
+    font-family: conthrax;
+    src: url("/assets/fonts/conthrax-sb.ttf");
+}
+
+
+
+body {
+    background-color: black;
+    background-image: url("https://i.ibb.co/qBZM3Gy/introcover2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 0px;
+    width: 100%;
+}
+
+header {
+    text-align: center;
+    margin-top: 20px;
+    color: rgb(252, 174, 255);
+    text-shadow: 2px 2px 2px #0300bd;
+}
+
+header h1 {
+    font-family: "conthrax", sans-serif;
+    font-size: 30px;
+}
+
+header h2 {
+    font-family: "conthrax", sans-serif;
+    font-size: 20px;
+}
+
+.playerTwo--bg {
+    background-color: rgb(255, 49, 117);
+    background-image: url("https://i.ibb.co/4KG26FH/jo-san-neuromancerfrontv7.jpg");
+    background-repeat: no-repeat;
+
+    background-size: cover;
+
+    height: 0px;
+    width: 100%;
+}
+
+.playerOne--bg {
+    background-color: rgb(252, 202, 94);
+    background-image: url("https://i.ibb.co/d7QzkJQ/monalisaoverdrive.jpg");
+    background-repeat: no-repeat;
+
+    background-size: cover;
+
+    height: 0px;
+    width: 100%;
+}
+
+
 .game {
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .game__board {
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.548);
+    width: 100%;
     display: flex;
     flex-direction: row;
-    cursor: pointer;
+    justify-content: center;
 }
 
 .game__board__column {
-    display:flex;
+    display: flex;
     flex-direction: column-reverse;
+    cursor: pointer;
 }
 
+
 .game__board__cell {
-    height: 15px;
-    width: 15px;
-    border: 1px solid black;
+    height: 10vw;
+    width: 10vw;
+    border: 2px dashed #ffffff00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playerTwo--board {
+    background-color: rgba(57, 0, 59, 0.459);
+    -webkit-box-shadow: inset 0px 0px 2px 2px #00dda6;
+    box-shadow: inset 0px 0px 2px 2px #00dda6;
+}
+
+.playerOne--board {
+    background-color: rgba(57, 0, 59, 0.459);
+    -webkit-box-shadow: inset 0px 0px 2px 2px #ffee00;
+    box-shadow: inset 0px 0px 2px 2px #ffee00;
+
 }
 
 .red__piece {
-    width: 15px;
-    height: 15px;
+    width: 5vw;
+    height: 5vw;
     border-radius: 50%;
-    background-color: red;
+    background-color: rgb(255, 213, 96);
+    -webkit-box-shadow: 0px 0px 4px 3px #ffee00;
+    box-shadow: 0px 0px 3px 2px #ffee00;
 }
 
+
 .black__piece {
-    width: 15px;
-    height: 15px;
+    width: 5vw;
+    height: 5vw;
     border-radius: 50%;
-    background-color: black;
+    background-color: #00ffbf;
+;
+    -webkit-box-shadow: 0px 0px 4px 3px #00ffbf;
+    box-shadow: 0px 0px 4px 3px #00ffbf;
+
+}
+
+.game__startButton {
+    background-color: rgba(0, 0, 0, 0.897);
+    color: rgb(252, 174, 255);
+    width: 40%;
+    height: 40px;
+    margin-top: 40px;
+    -webkit-box-shadow: 0px 0px 4px 5px #0300bd;
+    box-shadow: 0px 0px 4px 5px #0300bd;
+    border: none;
+    font-size: 20px;
+    font-family: "conthrax", sans-serif;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 700px) {
+    .playerTwo--bg {
+        background-image: url("https://i.ibb.co/HnKSP9s/oie-VTl-TTo-Zx4od1.png");
+    }
+
+    .playerOne--bg {
+        background-image: url("https://i.ibb.co/HnKSP9s/oie-VTl-TTo-Zx4od1.png");
+    }
+
+    body {
+        background-size: auto;
+        background-position-x: center;
+    }
+
+    .game__startButton {
+        width: 15%;
+        height: 20px;
+        margin-top: 15px;
+        font-size: 15px;
+    }
+
+    .game__board__cell {
+        height: 35px;
+        width: 35px;
+    }
+
+    .game__board {
+        margin-top: 5px;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .black__piece {
+        width: 15px;
+        height: 15px;
+    }
+
+    .red__piece {
+        width: 15px;
+        height: 15px;
+    }
+
 }
