@@ -76,6 +76,7 @@ header h2 {
     display: flex;
     flex-direction: column-reverse;
     cursor: pointer;
+    position: relative;
 }
 
 
@@ -136,6 +137,11 @@ header h2 {
     cursor: pointer;
 }
 
+.position-abs{
+    position: absolute;
+    transition: 1s;
+}
+
 @media screen and (min-width: 700px) {
     .playerTwo--bg {
         background-image: url("https://i.ibb.co/HnKSP9s/oie-VTl-TTo-Zx4od1.png");
@@ -177,13 +183,4 @@ header h2 {
         height: 15px;
     }
 
-}
-
-.position-rel {
-    position: relative;
-}
-
-.position-abs{
-    position: absolute;
-    transition: 1s;
 }
