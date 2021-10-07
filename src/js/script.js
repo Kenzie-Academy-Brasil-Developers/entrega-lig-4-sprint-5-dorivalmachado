@@ -129,8 +129,6 @@ function checkHorizontalVictory(arrayLine, arrayColumn) {
         if (arrayLine - level >= 0) {
             if (boardSize[arrayLine - level][arrayColumn] === boardSize[arrayLine][arrayColumn] && counter.Horizontal.leftAble === true) {
                 counter.Horizontal.left++
-                /*console.log(boardSize[arrayLine - level][arrayColumn])
-                console.log(boardSize[arrayLine][arrayColumn])*/
             } else {
                 counter.Horizontal.leftAble = false
             }
@@ -139,11 +137,8 @@ function checkHorizontalVictory(arrayLine, arrayColumn) {
         if (arrayLine + level <= 6) {
             if (boardSize[arrayLine + level][arrayColumn] === boardSize[arrayLine][arrayColumn] && counter.Horizontal.rightAble === true) {
                 counter.Horizontal.right++
-                /*console.log(boardSize[arrayLine + level][arrayColumn])
-                console.log(boardSize[arrayLine][arrayColumn])*/
             } else {
                 counter.Horizontal.rightAble = false
-                console.log()
             }
         }
 
@@ -263,11 +258,11 @@ function insertDisk(selectedColumn, player) {
     const disk = document.createElement("div");
 
     if (player === true) {
-        diskValue = "V"
-        disk.classList.add("red__piece");
+        diskValue = "1"
+        disk.classList.add("playerOne__piece");
     } else {
-        diskValue = "P"
-        disk.classList.add("black__piece");
+        diskValue = "2"
+        disk.classList.add("playerTwo__piece");
     }
 
     let attemptFindEmptyCell = 0;
