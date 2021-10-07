@@ -8,7 +8,7 @@ start.addEventListener("click", startRestart)
 
 let boardSize
 
-//Criação de função de Start // Restart
+//Criação de função de Start / Restart
 function startRestart() {
     let body = document.getElementsByTagName("body")
     body[0].setAttribute("class", "playerOne--bg")
@@ -68,11 +68,10 @@ let firstPlayer = true
 
 // Base da função do jogo todo
 function play(e) {
-    // Verifica se é o Player 1 ou 2
-    if (firstPlayer === true) {
-        //Verifica se o movimento é válido ou não
-        if (e.currentTarget.lastChild.childElementCount === 0) {
-            //Se for válido, o código da adição da peça vai aqui
+    //Verifica se o movimento é válido ou não
+    if (e.currentTarget.lastChild.childElementCount === 0) {
+        // Verifica se é o Player 1 ou 2
+        if (firstPlayer === true) {
             insertDisk(e.currentTarget, firstPlayer)
             
             let body = document.getElementsByTagName("body")
@@ -82,13 +81,10 @@ function play(e) {
             for(let i=0; i< cells.length; i++){
                 cells[i].setAttribute("class", "game__board__cell playerTwo--board")
             }
-            //A linha abaixo muda para a vez do Player 2
+
             firstPlayer = false
             
-        }
-    } else {
-        if (e.currentTarget.lastChild.childElementCount === 0) {
-            //Se for válido, o código da adição da peça vai aqui
+        } else {
             insertDisk(e.currentTarget, firstPlayer)
 
             let body = document.getElementsByTagName("body")
@@ -100,8 +96,6 @@ function play(e) {
                 
             }
 
-
-            //A linha abaixo muda para a vez do Player 1.
             firstPlayer = true
         }
     }
@@ -273,16 +267,14 @@ function showFallAnimation (column,disk,cell,counter){
     const cellHeight = cell.clientHeight
     const gap = columnHeight/6 - cellHeight
     
-    column.classList.add("position-rel");
     disk.classList.add("position-abs");
     disk.style.top = `-${cellHeight}px`
     
-    setTimeout(() => disk.style.top = `${cellHeight*(7-counter) - (gap*(counter-1))}px`, 1000)
+    setTimeout(() => disk.style.top = `${cellHeight*(7-counter) - (gap*(counter-1))}px`, 300)
     setTimeout(() => {
         disk.removeAttribute("style");
-        column.classList.remove("position-rel");
         disk.classList.remove("position-abs");
-    }, 2000)
+    }, 1300)
             
 }
 
