@@ -6,7 +6,15 @@ const start = document.getElementById("startButton")
 start.addEventListener("click", startRestart)
 
 
-let boardSize
+let boardSize;
+
+let firstPlayer = true;
+
+let drawCounter = 0;
+
+let victoryStatus = false;
+
+let resultStatus = false;
 
 //Criação de função de Start / Restart
 function startRestart() {
@@ -34,11 +42,6 @@ function startRestart() {
     }
 }
 
-let firstPlayer = true
-
-let drawCounter = 0
-
-let victoryStatus = false
 
 
 function reset() {
@@ -50,6 +53,10 @@ function reset() {
         cells[k].classList.add("playerOne--board")
     }
 
+    if (resultStatus === true){
+        board.lastChild.remove();
+        resultStatus = false;
+    }
     firstPlayer = true
     drawCounter = 0
     victoryStatus = false
@@ -112,8 +119,6 @@ function play(e) {
 }
 
 
-// Matheus
-
 function checkHorizontalVictory(arrayLine, arrayColumn) {
     let counter = {
         Horizontal: {
@@ -148,7 +153,12 @@ function checkHorizontalVictory(arrayLine, arrayColumn) {
     let countHorizontal = counter.Horizontal.left + counter.Horizontal.right
 
     if (countHorizontal >= 3) {
-        console.log(`Venceu a partida na horizontal`)
+        if (firstPlayer === true){
+            showResult(`O player 1 venceu a partida na horizontal`)
+        }else{
+            showResult(`O player 2 venceu a partida na horizontal`)
+        }
+        
         victoryStatus = true
 
     }
@@ -174,7 +184,12 @@ function checkVerticalVictory(arrayLine, arrayColumn) {
     let countVertical = counter.Vertical.up
 
     if (countVertical >= 3) {
-        console.log(`Venceu a partida na vertical`)
+        if (firstPlayer === true){
+            showResult(`O player 1 venceu a partida na vertical`)
+        }else{
+            showResult(`O player 2 venceu a partida na vertical`)
+        }
+        
         victoryStatus = true
 
     }
@@ -236,7 +251,12 @@ function checkDiagonalVictory(arrayLine, arrayColumn) {
     let countDiagonalDown = counter.DiagonalDown.left + counter.DiagonalDown.right
 
     if (countDiagonalUp >= 3 || countDiagonalDown >= 3) {
-        console.log(`Venceu a partida na diagonal`)
+        if (firstPlayer === true){
+            showResult(`O player 1 venceu a partida na diagonal`)
+        }else{
+            showResult(`O player 2 venceu a partida na diagonal`)
+        }
+        
         victoryStatus = true
 
     }
@@ -244,10 +264,21 @@ function checkDiagonalVictory(arrayLine, arrayColumn) {
 
 
 function draw() {
-    console.log("Empate!")
+    showResult("Empate!")
     
 }
-// Matheus
+
+function showResult (message) {
+	const divMessage = document.createElement("div");
+	divMessage.classList.add("message-container")
+	
+	const result = document.createElement("p");
+	result.innerText = message;
+	divMessage.appendChild(result);
+	board.appendChild(divMessage);
+    resultStatus = true;
+}
+
 
 
 function insertDisk(selectedColumn, player) {
