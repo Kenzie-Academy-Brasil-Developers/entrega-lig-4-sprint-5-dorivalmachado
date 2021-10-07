@@ -1,10 +1,12 @@
 @font-face {
     font-family: conthrax;
-    src: url("/assets/fonts/conthrax-sb.ttf");
+    src: url("/src/assets/fonts/conthrax-sb.ttf");
 }
 
 
-
+ html {
+     min-width: 360px;
+ }
 body {
     background-color: black;
     background-image: url("https://i.ibb.co/qBZM3Gy/introcover2.jpg");
@@ -23,12 +25,12 @@ header {
 
 header h1 {
     font-family: "conthrax", sans-serif;
-    font-size: 30px;
+    font-size: 2em;
 }
 
 header h2 {
     font-family: "conthrax", sans-serif;
-    font-size: 20px;
+    font-size: 1em;
 }
 
 .playerTwo--bg {
@@ -132,7 +134,7 @@ header h2 {
     -webkit-box-shadow: 0px 0px 4px 5px #0300bd;
     box-shadow: 0px 0px 4px 5px #0300bd;
     border: none;
-    font-size: 20px;
+    font-size: 1em;
     font-family: "conthrax", sans-serif;
     cursor: pointer;
 }
@@ -142,7 +144,7 @@ header h2 {
     transition: 1s;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 800px) {
     .playerTwo--bg {
         background-image: url("https://i.ibb.co/HnKSP9s/oie-VTl-TTo-Zx4od1.png");
     }
@@ -164,12 +166,14 @@ header h2 {
     }
 
     .game__board__cell {
-        height: 35px;
-        width: 35px;
+        height: 55px;
+        width: 55px;
+        padding-left: 2px;
+        padding-top: 2px;
     }
 
     .game__board {
-        margin-top: 5px;
+        margin-top: 30px;
         background-color: rgba(0, 0, 0, 0);
     }
 
