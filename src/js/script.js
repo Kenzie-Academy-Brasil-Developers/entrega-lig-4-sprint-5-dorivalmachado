@@ -38,6 +38,9 @@ let firstPlayer = true
 
 let drawCounter = 0
 
+let victoryStatus = false
+
+
 function reset() {
     // A primeira coluna é a esquerda
     // A primeira celula é a de baixo
@@ -49,6 +52,7 @@ function reset() {
 
     firstPlayer = true
     drawCounter = 0
+    victoryStatus = false
 }
 
 
@@ -243,7 +247,6 @@ function checkDiagonalVictory(arrayLine, arrayColumn) {
     }
 }
 
-let victoryStatus = false
 
 function draw() {
     console.log("Empate!")
