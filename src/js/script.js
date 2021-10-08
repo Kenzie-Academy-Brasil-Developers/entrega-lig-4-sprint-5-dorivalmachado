@@ -1,7 +1,6 @@
 const board = document.getElementById("gameBoard")
-
+const audio = document.querySelector('audio');
 const start = document.getElementById("startButton")
-
 
 start.addEventListener("click", startRestart)
 
@@ -34,6 +33,7 @@ function startRestart() {
     ]
 
     if (start.innerText === "START") {
+        audio.play();
         createBoard()
         start.innerText = "RESET"
     } else {
