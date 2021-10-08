@@ -1,6 +1,6 @@
 @font-face {
     font-family: conthrax;
-    src: url("/src/assets/fonts/conthrax-sb.ttf");
+    src: url("../assets/fonts/conthrax-sb.ttf");
 }
 
 html {
@@ -9,7 +9,7 @@ html {
 
 body {
     background-color: black;
-    background-image: url("/src/assets/images/startcover.jpg");
+    background-image: url("../assets/images/startcover.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 0px;
@@ -35,7 +35,7 @@ header h2 {
 
 .playerTwo--bg {
     background-color: rgb(255, 49, 117);
-    background-image: url("/src/assets/images/player2cover.jpg");
+    background-image: url("../assets/images/player2cover.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 0px;
@@ -44,7 +44,7 @@ header h2 {
 
 .playerOne--bg {
     background-color: rgb(252, 202, 94);
-    background-image: url("/src/assets/images/player1cover.jpg");
+    background-image: url("../assets/images/player1cover.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 0px;
@@ -195,15 +195,15 @@ header h2 {
     
     
     .playerTwo--bg {
-        background-image: url("/src/assets/images/desktopCover.png");
+        background-image: url("../assets/images/desktopCover.png");
     }
 
     .playerOne--bg {
-        background-image: url("/src/assets/images/desktopCover.png");
+        background-image: url("../assets/images/desktopCover.png");
     }
 
     body {
-        background-image: url("/src/assets/images/introcover.jpg");
+        background-image: url("../assets/images/introcover.jpg");
         background-size: auto;
         background-position-x: center;
     }
